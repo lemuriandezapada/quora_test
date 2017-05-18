@@ -84,7 +84,7 @@ class WordLSTM(nn.Module):
 #Let's define the character convnet
 #No time to run an actual charLSTM, also we don't have enough data for it to work properly        
 class CharCNN(nn.Module):
-    def __init__(self, charembsize):
+    def __init__(self, charembsize=100):
         super(CharCNN, self).__init__()
         #take character indices and output dense encodings
         #index #0 always outputs 0
