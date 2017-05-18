@@ -51,14 +51,30 @@ Dual branch Siamese network, with:
  - No extra features. Only data. No computing lengths, frequencies, TF-IDF, one-hots, or any mambo-jumbo a linear model would like
 
 Basically our architecture looks something like this:
-
+[![network](https://github.com/lemuriandezapada/quora_test/blob/master/images/network.png?raw=true)]
+- Words get tokenized with whatever Spacy outputs and given 3 embeddings
+    - One 300d fixed embedding from Spacy's glove [if available]
+    - One 50d (learnable) embedding from us [for the ones with glove vectors]
+    - One 50d (learnable embedding) from us for words outside of glove vocabulary
+- They then go into an LSTM and get read out on the last activation timestep
+- They get read out with a resnet structure and two distance metrics are computed with the output of the second branch
+- The strings also get split by most common 100 characters, and each character is given an embedding
+- The embeddings then form the basis for inputs into a fully convolutional stack meant to extract some 1-7grams 
+- Average pooling at the end
+- and get two metrics computed
+- The metrice get concatenated and read out resnet style until the final classification sigmoid
+- That is all :)
 
 # Meh, ok, so what works, what doesn't?
  - A simple MLP from averaged glove vectors already yields a LB score of 0.46. If you score lower (higher) than this, you're not actually trying. 
  - Concatenating the features instead of euclidean+product distances doesn't have any clear impact, but increases computation time.
  - Go weight decay!
  - Some drop-input helps prevent overfitting but too much will kill feature saliency.
- - 
+ - CharRNN would need more data
+ - Train and test data come from different distributions. Whether that needs to be corected or not, is up for debate. 
+ - Bidirectional is overkill
+ - More embeddings for the same tokens are good. Some fixed, some not, and with different capacity. You want to split some words from the clusters they fell in when trained up on the 6B words set, but not so much that they loose touch with their basic meaning and fail to generalize.
+ - Likely model averaging helps, but it's still training
 
 
 
