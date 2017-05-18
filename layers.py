@@ -56,8 +56,7 @@ class WordLSTM(nn.Module):
         super(WordLSTM, self).__init__()
         #typical Pytorch cudnn LSTM declaration
         self.rnn = nn.LSTM(input_size=400, 
-                           hidden_size=self.rsize, 
-                           num_layers=self.layernum, 
+                           hidden_size=rsize, 
                            batch_first=True, 
                           )
 
