@@ -13,7 +13,7 @@ Not the most memory efficient but it fits on my laptop.
 Alrighty, so we're in Kaggle under the handle Praise Kek
 (https://www.kaggle.com/praisekek)
 
-As of submitting this, we're sadly only on spot 814/2877 with a LB score of ~0.318, although for only single models.
+As of submitting this, we're sadly only on spot 650/2877 with a LB score of ~0.302, for a 2 model ensemble. Best score for single models was 0.315
 
 I dug a bit for basic analysis that's not reported here, but luckily the internet already did a lot of work in presenting it:
  - https://www.kaggle.com/anokas/data-analysis-xgboost-starter-0-35460-lb
@@ -75,8 +75,7 @@ Basically our architecture looks something like this:
  - Bidirectional is overkill
  - Learning the distance metrics directly, or attempting a supervised/unsupervised LM hybrid doesn't provide much improvement on this data. Or at least did not in some previous incarnation of my implementation.
  - More embeddings for the same tokens are good. Some fixed, some not, and with different capacity. You want to split some words from the clusters they fell in when trained up on the 6B words set, but not so much that they loose touch with their basic meaning and fail to generalize.
- - Likely model averaging helps, but it's still training
+ - Model averaging helps. Preferably models that are different. At least trained on different data, preferably different optimizer.
  - Honestly even just more training would help. Validation error still decreasing and intermediate submissions still boost LB ranking. But I can cook eggs on my laptop now.
-
  - Even more honestly, though, while it may not rank all that high (yet), this is already a more robust and generalizable solution beyond this test set, than what some other feature-based methods provide. The (non)features used here are non-specific to this particular problem domain.
 
