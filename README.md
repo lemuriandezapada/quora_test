@@ -13,7 +13,7 @@ Not the most memory efficient but it fits on my laptop.
 Alrighty, so we're in Kaggle under the handle Praise Kek
 (https://www.kaggle.com/praisekek)
 
-As of submitting this, we're sadly only on spot 650/2877 with a LB score of ~0.302, for a 2 model ensemble. Best score for single models was 0.315
+As of submitting this, we're sadly only on spot 577/2890 with a LB score of 0.297 for an esnemble of 5 intermediate solutions from 2 models. Best score for a 2 model 2 solution ensemble was ~0.302. Best score for single models was 0.315.
 
 I dug a bit for basic analysis that's not reported here, but luckily the internet already did a lot of work in presenting it:
  - https://www.kaggle.com/anokas/data-analysis-xgboost-starter-0-35460-lb
